@@ -1,26 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <h1>🔮 Fortune Teller 🔮</h1>
+    <p>{{ fortune }}</p>
+    <button @click="getFortune">Get Your Fortune</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+    const fortunes = [
+      "You will have a great day! 🌟",
+      "A surprise is waiting for you! 🎁",
+      "An opportunity will come your way! 🚀",
+      "Expect good news soon! 📩",
+      "Someone is thinking of you! 💌",
+      "Your hard work will pay off! 💰",
+      "Your kindness will be rewarded! 🏆"
+    ];
+
+    const fortune = ref("Click the button to reveal your fortune!");
+
+    const getFortune = () => {
+      const randomIndex = Math.floor(Math.random() * fortunes.length);
+      fortune.value = fortunes[randomIndex];
+    };
+
+    return { fortune, getFortune };
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
